@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardinalCare Solutions - Shop Cardinal Health Products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        :root {
+            --cardinal-red: #C8102E;
+            --cardinal-dark-red: #9D0A26;
+            --cardinal-gray: #666666;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 20px 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--cardinal-red);
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            color: var(--cardinal-gray);
+            font-weight: normal;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--cardinal-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cardinal-red);
+        }
+
+        .nav-cta {
+            background: var(--cardinal-red);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--cardinal-dark-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--cardinal-red) 0%, var(--cardinal-dark-red) 100%);
+            color: white;
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            opacity: 0.95;
+        }
+
+        .hero-cta {
+            background: white;
+            color: var(--cardinal-red);
+            padding: 16px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* Featured Product Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .featured-content h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .featured-content p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        .new-badge {
+            background: #FFD700;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .featured-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Product Section */
+        .container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--cardinal-red);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--cardinal-gray);
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #FFD700;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-body {
+            padding: 30px;
+        }
+
+        .product-card h3 {
+            font-size: 24px;
+            color: var(--cardinal-red);
+            margin-bottom: 10px;
+        }
+
+        .product-tagline {
+            font-size: 14px;
+            color: var(--cardinal-gray);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: var(--cardinal-red);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--cardinal-red);
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            font-size: 13px;
+            color: var(--cardinal-gray);
+            margin-bottom: 20px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--cardinal-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--cardinal-dark-red);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--cardinal-red);
+            border: 2px solid var(--cardinal-red);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cardinal-red);
+            color: white;
+        }
+
+        /* Why Section */
+        .why-section {
+            background: white;
+            border-radius: 12px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .benefit {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .benefit h4 {
+            font-size: 20px;
+            color: var(--cardinal-red);
+            margin-bottom: 12px;
+        }
+
+        .benefit p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 60px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--cardinal-red);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-header h2 {
+            color: var(--cardinal-red);
+        }
+
+        .close {
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--cardinal-gray);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div>
+            <div class="logo">CardinalCare Solutions</div>
+            <div class="logo-sub">Premium Products by Cardinal Health</div>
+        </div>
+        <div class="nav-links">
+            <a href="#products">Products</a>
+            <a href="#why">Why CardinalCare</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="#" class="nav-cta" onclick="openModal('sample')">Request Sample</a>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>Innovative Products for Patient Care</h1>
+        <p>Made by Cardinal Health. Trusted by 90% of U.S. Hospitals.</p>
+        <a href="#products" class="hero-cta">Shop Products</a>
+    </div>
+
+    <!-- Featured Product Banner -->
+    <div class="featured-banner">
+        <div class="featured-content">
+            <div class="new-badge">NEW PRODUCT</div>
+            <h2>CardinalCare DispoSafe™</h2>
+            <p>The disposable pressure redistribution mattress healthcare has been waiting for. Single-patient use eliminates infection risk while delivering clinical-grade pressure relief at a fraction of traditional costs.</p>
+            <div class="featured-stats">
+                <div class="stat">
+                    <div class="stat-value">$299</div>
+                    <div class="stat-label">Per Unit</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">Zero</div>
+                    <div class="stat-label">Maintenance</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Disposable</div>
+                </div>
+            </div>
+            <div style="margin-top: 30px;">
+                <a href="#" class="btn btn-primary" onclick="openModal('sample')" style="margin-right: 15px;">Request Free Sample</a>
+                <a href="#disposafe" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white; color: white;">Learn More</a>
+            </div>
+        </div>
+        <div style="text-align: center; font-size: 120px;">🛏️</div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="container" id="products">
+        <h2 class="section-title">Our Products</h2>
+        <p class="section-subtitle">Premium healthcare solutions designed and manufactured by Cardinal Health</p>
+
+        <div class="product-grid">
+            <!-- DispoSafe -->
+            <div class="product-card" id="disposafe">
+                <div class="product-image" style="background: linear-gradient(135deg, #C8102E 0%, #9D0A26 100%);">
+                    🛏️
+                    <div class="badge">NEW!</div>
+                </div>
+                <div class="product-body">
+                    <h3>CardinalCare DispoSafe™</h3>
+                    <p class="product-tagline">Disposable Pressure Redistribution Mattress</p>
+                    <p class="product-description">
+                        Revolutionary single-patient-use mattress combining infection control, affordability, and clinical-grade pressure relief. Perfect for nursing homes, home care, and hospital isolation units.
+                    </p>
+                    <ul class="features">
+                        <li>4-inch multi-layer foam technology</li>
+                        <li>Antimicrobial silver-ion cover</li>
+                        <li>No cleaning, no maintenance</li>
+                        <li>Universal bed compatibility</li>
+                        <li>Lightweight (8-12 lbs)</li>
+                        <li>No electricity needed</li>
+                    </ul>
+                    <div class="price">$299</div>
+                    <div class="price-note">Volume discounts: $239 for 100+ units</div>
+                    <div class="product-actions">
+                        <a href="#" class="btn btn-primary" onclick="openModal('sample')">Request Sample</a>
+                        <a href="#" class="btn btn-secondary" onclick="openModal('order')">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SkinHealth360 -->
+            <div class="product-card">
+                <div class="product-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    🩺
+                </div>
+                <div class="product-body">
+                    <h3>SkinHealth360™</h3>
+                    <p class="product-tagline">Pressure Injury Prevention Platform</p>
+                    <p class="product-description">
+                        Integrated digital platform with clinical guidelines, training resources, and best practices for pressure injury prevention across all care settings.
+                    </p>
+                    <ul class="features">
+                        <li>Evidence-based protocols</li>
+                        <li>24/7 training videos</li>
+                        <li>Risk assessment tools</li>
+                        <li>Documentation templates</li>
+                        <li>Outcome tracking</li>
+                    </ul>
+                    <div class="price">Free Access</div>
+                    <div class="price-note">Included with product purchases</div>
+                    <div class="product-actions">
+                        <a href="https://devdanyoung.github.io/Cardinal-Health-Platform-Demo/" target="_blank" class="btn btn-primary">Access Platform</a>
+                        <a href="#" class="btn btn-secondary" onclick="openModal('info')">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TruBreeze -->
+            <div class="product-card">
+                <div class="product-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    🌡️
+                </div>
+                <div class="product-body">
+                    <h3>TruBreeze™</h3>
+                    <p class="product-tagline">Advanced Patient Warming</p>
+                    <p class="product-description">
+                        State-of-the-art patient warming system for surgical and post-operative care. Maintains normothermia with precision temperature control.
+                    </p>
+                    <ul class="features">
+                        <li>Rapid warming capability</li>
+                        <li>Quiet operation</li>
+                        <li>Disposable blankets</li>
+                        <li>Digital controls</li>
+                        <li>OR table compatible</li>
+                    </ul>
+                    <div class="price">Request Quote</div>
+                    <div class="price-note">Custom configurations available</div>
+                    <div class="product-actions">
+                        <a href="#" class="btn btn-primary" onclick="openModal('quote')">Get Pricing</a>
+                        <a href="#" class="btn btn-secondary" onclick="openModal('info')">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Section -->
+    <div class="container">
+        <div class="why-section" id="why">
+            <h2 class="section-title">Why Choose CardinalCare?</h2>
+            <p class="section-subtitle">Quality you trust. Innovation you need. Service you deserve.</p>
+
+            <div class="benefits">
+                <div class="benefit">
+                    <div class="benefit-icon">✓</div>
+                    <h4>Cardinal Health Quality</h4>
+                    <p>Manufactured to rigorous standards. FDA-compliant, ISO-certified facilities.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🏭</div>
+                    <h4>Direct from Manufacturer</h4>
+                    <p>No middleman markup. Better pricing, faster support, direct product access.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🚚</div>
+                    <h4>Trusted Distribution</h4>
+                    <p>Nationwide network. Same reliable delivery you depend on.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">📚</div>
+                    <h4>Free Training</h4>
+                    <p>Access to SkinHealth360 platform with videos and clinical resources.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">💰</div>
+                    <h4>Volume Discounts</h4>
+                    <p>Flexible pricing. Subscription programs available.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🤝</div>
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated account management and clinical specialists.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="contact">
+        <p style="font-size: 18px; font-weight: 600;">CardinalCare Solutions</p>
+        <p>A Division of Cardinal Health</p>
+        <p style="margin-top: 20px;">Questions? <strong>1-800-CARDINAL</strong> | <strong>cardinalcare@cardinalhealth.com</strong></p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms</a>
+            <a href="#">Shipping</a>
+            <a href="#">Support</a>
+        </div>
+        <p style="margin-top: 30px; font-size: 12px; opacity: 0.7;">© 2026 Cardinal Health. All rights reserved.</p>
+    </div>
+
+    <!-- Sample Request Modal -->
+    <div id="sample" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Request Free Sample</h2>
+                <span class="close" onclick="closeModal('sample')">×</span>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Product *</label>
+                    <select required>
+                        <option>CardinalCare DispoSafe™ Mattress</option>
+                        <option>TruBreeze™ Warming System</option>
+                        <option>Multiple Products</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Facility Name *</label>
+                    <input type="text" required placeholder="Hospital or Facility Name">
+                </div>
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" required>
+                </div>
+                <div class="product-actions">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('sample')">Cancel</button>
+                </div>
+                <p style="margin-top: 20px; font-size: 13px; color: #666;">Response within 24 hours.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div id="order" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Order CardinalCare DispoSafe™</h2>
+                <span class="close" onclick="closeModal('order')">×</span>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Quantity *</label>
+                    <input type="number" required placeholder="Number of units" min="1">
+                    <small style="color: #666;">Volume discounts: 10-49 units: $279 | 50-99: $259 | 100+: $239</small>
+                </div>
+                <div class="form-group">
+                    <label>Facility Name *</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Shipping Address *</label>
+                    <textarea required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Contact Email *</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>Purchase Order Number</label>
+                    <input type="text" placeholder="Optional">
+                </div>
+                <div class="product-actions">
+                    <button type="submit" class="btn btn-primary">Submit Order</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('order')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quote Modal -->
+    <div id="quote" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Request Pricing Quote</h2>
+                <span class="close" onclick="closeModal('quote')">×</span>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Product *</label>
+                    <select required>
+                        <option>TruBreeze™ Warming System</option>
+                        <option>CardinalCare DispoSafe™ (bulk order)</option>
+                        <option>Bundle - Multiple Products</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Estimated Quantity</label>
+                    <input type="number">
+                </div>
+                <div class="form-group">
+                    <label>Facility Name *</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" required>
+                </div>
+                <div class="product-actions">
+                    <button type="submit" class="btn btn-primary">Request Quote</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('quote')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="info" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Product Information</h2>
+                <span class="close" onclick="closeModal('info')">×</span>
+            </div>
+            <p style="margin-bottom: 20px;">For detailed product information, technical specifications, or clinical studies, please contact our team.</p>
+            <p><strong>Phone:</strong> 1-800-CARDINAL</p>
+            <p><strong>Email:</strong> cardinalcare@cardinalhealth.com</p>
+            <div style="margin-top: 30px;">
+                <button class="btn btn-secondary" onclick="closeModal('info')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && !this.getAttribute('onclick')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
